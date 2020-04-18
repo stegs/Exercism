@@ -2,22 +2,42 @@ package scrabble
 
 import "strings"
 
+var values = map[rune]int{
+	'a': 1,
+	'b': 3,
+	'c': 3,
+	'd': 2,
+	'e': 1,
+	'f': 4,
+	'g': 2,
+	'h': 4,
+	'i': 1,
+	'j': 8,
+	'k': 5,
+	'l': 1,
+	'm': 3,
+	'n': 1,
+	'o': 1,
+	'p': 3,
+	'q': 10,
+	'r': 1,
+	's': 1,
+	't': 1,
+	'u': 1,
+	'v': 4,
+	'w': 4,
+	'x': 8,
+	'y': 4,
+	'z': 10,
+}
+
 //Score takes an input and outputs the scrabble score
 func Score(input string) int {
-	values := make(map[string]int)
-
-	values["a"], values["e"], values["i"], values["o"], values["u"], values["l"], values["n"], values["r"], values["s"], values["t"] = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	values["d"], values["g"] = 2, 2
-	values["b"], values["c"], values["m"], values["p"] = 3, 3, 3, 3
-	values["f"], values["h"], values["v"], values["w"], values["y"] = 4, 4, 4, 4, 4
-	values["k"] = 5
-	values["j"], values["x"] = 8, 8
-	values["q"], values["z"] = 10, 10
-
+	word := strings.ToLower(input)
 	total := 0
 
-	for _, c := range input {
-		total += values[strings.ToLower(string(c))]
+	for _, c := range word {
+		total += values[c]
 	}
 
 	return total
